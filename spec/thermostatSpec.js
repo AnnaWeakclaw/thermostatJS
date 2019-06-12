@@ -71,7 +71,7 @@ describe('Thermostat', function() {
     for(var i = 0; i < 3; i++){
       thermostat.down();
     }
-    thermostat.showUsage();
+    
     expect(thermostat.currentUsageStatus).toBe('low-usage')
   });
 
@@ -86,7 +86,6 @@ describe('Thermostat', function() {
     for(var i = 0; i < 5; i++){
       thermostat.up();
     }
-    thermostat.showUsage();
     expect(thermostat.currentUsageStatus).toBe('high-usage')
   });
 

@@ -8,14 +8,20 @@ function Thermostat() {
 };
 
 Thermostat.prototype.up = function() {
-  return this.temp += 1;
+  this.temp += 1;
+  this.showUsage()
+  return this.temp;
 };
 
 Thermostat.prototype.down = function() {
   if(this.isMinTemp()) {
     throw new Error('you will freeze if you do that!');
   }
-  return this.temp -= 1;
+  else {
+  this.temp -= 1;
+  this.showUsage()
+  return this.temp;
+  }
 };
 
 Thermostat.prototype.giveMinTemp = function() {
@@ -34,10 +40,7 @@ Thermostat.prototype.powerSavingModeSwitch = function() {
   else {
     this.powerSavingMode = true;
     this.maxTemp = 25;
-  }};
-
-Thermostat.prototype.reset = function() {
-  return this.temp = this.DEFAULT_TEMP;
+  }
 };
 
 Thermostat.prototype.showUsage = function() {
