@@ -8,6 +8,10 @@ function Thermostat() {
 };
 
 Thermostat.prototype.up = function() {
+  
+  if(this.isMaxTemp()) {
+    throw new Error('you will boil if you do that!');
+  }
   this.temp += 1;
   this.showUsage()
   return this.temp;
@@ -29,7 +33,11 @@ Thermostat.prototype.giveMinTemp = function() {
 };
 
 Thermostat.prototype.isMinTemp = function() {
-  return this.temp === this.MIN_TEMP
+  return this.temp === this.MIN_TEMP;
+};
+
+Thermostat.prototype.isMaxTemp = function() {
+  return this.temp === this.maxTemp;
 };
 
 Thermostat.prototype.powerSavingModeSwitch = function() {
@@ -58,3 +66,4 @@ Thermostat.prototype.showUsage = function() {
 Thermostat.prototype.reset = function() {
   return this.temp = this.DEFAULT_TEMP;
 };
+

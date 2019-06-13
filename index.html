@@ -1,21 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Thermostat</title>
-  </head>
-  <body>
-    <section>
-      <h1 id="temperature"></h1>
-      <p>
-        <button id="temperature-up">+</button>
-        <button id="temperature-down">-</button>
-        <button id="temperature-reset">reset</button>
-        power saving mode is <span id="power-saving-status">on</span>
-        <button id="powersaving-on">PSM on</button>
-        <button id="powersaving-off">PSM off</button>
-      </p>
-    </section>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="./src/thermostat.js"></script>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Thermostat</title>
+</head>
+
+<body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="./src/thermostat.js"></script>
+  <script>
+
+    $(document).ready(function () {
+      var thermostat = new Thermostat();
+      $("#temp-up").click(function () {
+        
+        thermostat.up();
+        $("#temp").text(thermostat.temp);
+      });
+
+      $("#temp").text(thermostat.temp);
+    });
+  </script>
+  <section>
+
+    <h1 id="temp"></h1>
+    <p>
+      <div class="col-md-4 text-center">
+        <button id="temp-up" class="btn btn-danger">+</button>
+        <button id="temp-down" class="btn btn-primary">-</button>
+        <button id="temp-reset" class="btn btn-success">reset</button>
+      </div>
+      power saving mode is <span id="power-saving-status">on</span>
+      <button id="powersaving-on">PSM on</button>
+      <button id="powersaving-off">PSM off</button>
+    </p>
+  </section>
+
+</body>
+
 </html>
