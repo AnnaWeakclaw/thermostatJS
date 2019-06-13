@@ -11,18 +11,16 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.4.0/js/bootstrap4-toggle.min.js"></script>
-  
+
   <!-- for the gauge -->
- 
-  <link rel=stylesheet type=text/css href="./style.css"/>
+
+  <link rel=stylesheet type=text/css href="./style.css" />
   <script src="./src/thermostat.js"></script>
 
   <title>Thermostat</title>
 </head>
 
 <body>
-
-
   <script>
 
     $(document).ready(function () {
@@ -52,22 +50,19 @@
 
       myTemp();
 
-     
+      $.get('http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&APPID=73390a3e795fd84d2abce4f25b99c9af', function (data) {
+        $('#API-temp').text(`OpenWeatherMap API temp in London is: ${data.main.temp} Celsius degrees`);
+      });
+
       function myTemp() {
         $("#temp").text(thermostat.temp);
         $('#temp').attr('class', thermostat.showUsage());
       }
-
-
-
     });
   </script>
-
   <section>
 
-    <h1 id="temp">
-       
-    </h1>
+    <h1 id="temp"></h1>
 
     <p>
       <div class="col-md-4 text-center">
@@ -75,9 +70,12 @@
         <button id="temp-down" class="btn btn-primary">-</button>
         <button id="temp-reset" class="btn btn-success">reset</button>
       </div>
-      <div class="text-center">
+      <div class="col-md-4 text-center">
         <br>power saving mode is <span id="power-saving-status"><input id="PSMToggle" type="checkbox" checked
             data-toggle="toggle"></span>
+      </div>
+      <div class="col-md-4 text-center">
+        <h2 id='API-temp'></h2>
       </div>
     </p>
   </section>
