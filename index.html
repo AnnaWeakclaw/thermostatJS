@@ -6,27 +6,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.4.0/css/bootstrap4-toggle.min.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.4.0/js/bootstrap4-toggle.min.js"></script>
+    <script src="./src/thermostat.js"></script>
   <title>Thermostat</title>
 </head>
 
 <body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <script src="./src/thermostat.js"></script>
+    
+
   <script>
 
     $(document).ready(function () {
       var thermostat = new Thermostat();
       $("#temp-up").click(function () {
-        
         thermostat.up();
         $("#temp").text(thermostat.temp);
       });
 
-      $("#temp").text(thermostat.temp);
-    });
-  </script>
-  <section>
+      $("#temp-down").click(function () {
+        thermostat.down();
+        $("#temp").text(thermostat.temp);
+      });
 
+      $("#temp-reset").click(function () {
+        thermostat.reset();
+        $("#temp").text(thermostat.temp);
+      });
+    
+      $("#PSMToggle").change(function(){
+    if($(this).prop("checked") == true){
+      thermostat.powerSavingModeSwitch();
+    }else{
+      thermostat.powerSavingModeSwitch();
+    }
+});
+   
+
+      $("#temp").text(thermostat.temp);
+
+
+
+    });
+      </script>
+
+  <section>
+  
     <h1 id="temp"></h1>
     <p>
       <div class="col-md-4 text-center">
@@ -34,7 +61,10 @@
         <button id="temp-down" class="btn btn-primary">-</button>
         <button id="temp-reset" class="btn btn-success">reset</button>
       </div>
-      power saving mode is <span id="power-saving-status">on</span>
+      <div class="text-center"> 
+          power saving mode is <span id="power-saving-status"><input id="PSMToggle" type="checkbox" checked data-toggle="toggle"></span>
+      </div>
+      
       <button id="powersaving-on">PSM on</button>
       <button id="powersaving-off">PSM off</button>
     </p>
